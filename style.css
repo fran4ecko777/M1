@@ -1,0 +1,85 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    font-family: Roboto;
+}
+
+.container {
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 336px;
+  display: flex;
+  align-items: center;
+  flex-direction:column;
+}
+
+.container-shablon {
+  width: 336px;
+  height: 28px;
+  background: #FFDC40;
+  margin: 0;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}
+
+.container-text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.button-add {
+  background-color: white;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.button-sort {
+  width: 25px;
+  height: 15px;
+  align-self: flex-end;
+  margin-right: 30px;
+  margin-bottom: 7px;
+}
+
+.input-zone {
+  width: 230px;
+  border: none;
+  padding: 0px;
+  margin: 0;
+  outline: none;
+}
+
+.item-box {
+  width: 286px;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.button-remove {
+  width: 20px;
+  border-radius: 15px;
+}
+
+.item:not(.item:last-child) {
+  margin-bottom: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.button-remove:hover {
+  background: #833AE0;
+}
