@@ -6,14 +6,18 @@ const buttonAdd = document.querySelector('.button-add');
 const itemBox = document.querySelector('.item-box');
 let input = document.querySelectorAll('.input-zone');
 let tracker = 'sort';
-
+let tasks = [item];
 
 
 buttonAdd.addEventListener('click', ()=>  {
-
+    
     let newElement = item.cloneNode(true);
-    newElement.children[0].value = '';
+    console.dir(newElement);
+    newElement.querySelector('.input-zone').value = '';
     itemBox.append( newElement );
+
+    tasks.push(newElement);
+
     newElement.querySelector('.button-remove').addEventListener('click', () => {
         newElement.remove();
     })
@@ -23,44 +27,38 @@ buttonAdd.addEventListener('click', ()=>  {
 sortButton.addEventListener('click', (e) => {
     if (tracker != 'sortUp') {
         e.target.src = './image/sortUp.svg';
-        let updInput = document.querySelectorAll('.input-zone');
-        let arr = [];
-        updInput.forEach((item) => {
-            arr.push(item.value);
-        });
-        arr.sort((a, b) => {
-            if (a > b) {
+        
+        tasks.sort((a, b) => {
+            if (a.querySelector('.input-zone').value > b.querySelector('.input-zone').value) {
                 return 1;
             } else {
                 return -1;
             }
-        
         })
-        for (let i = 0; i < arr.length; i++) {
-            updInput[i].value = arr[i];
-        }
+        refreshTasks(tasks);
+
         tracker = 'sortUp';
     } else {
         e.target.src = './image/sort.svg';
-        let updInput = document.querySelectorAll('.input-zone');
-        let arr = [];
-        updInput.forEach((item) => {
-            arr.push(item.value);
-        });
-        arr.sort((a, b) => {
-            if (a < b) {
+        
+        tasks.sort((a, b) => {
+            if (a.querySelector('.input-zone').value < b.querySelector('.input-zone').value) {
                 return 1;
             } else {
                 return -1;
             }
-        
         })
-        for (let i = 0; i < arr.length; i++) {
-            updInput[i].value = arr[i];
-        }
+        refreshTasks(tasks);
+
         tracker = 'sort';
     }
 })
+
+function refreshTasks(tasks) {
+    tasks.forEach((task) => {
+        itemBox.append(task);
+    }); 
+}
 
 
 sortButton.addEventListener('mouseover', (e) => {
