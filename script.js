@@ -8,6 +8,9 @@ let input = document.querySelectorAll('.input-zone');
 let tracker = 'sort';
 let tasks = [item];
 
+item.addEventListener('click', function() {
+    
+});
 
 buttonAdd.addEventListener('click', ()=>  {
     
@@ -17,17 +20,15 @@ buttonAdd.addEventListener('click', ()=>  {
     tasks.push(newElement);
 
     newElement.querySelector('.button-remove').addEventListener('click', () => {
-        newElement.remove();
+        tasks = tasks.filter((item) => {
+            console.log(Number(item !== newElement));
+            
+            return item != newElement
+        });
+        console.log(tasks);
+        refreshTasks(tasks);
     })
 });
-
-function removeItem (removeButton) {
-    removeButton.addEventListener('click', () => {
-        removeButton.parentElement.remove();
-    })
-}
-
-removeItem(removeButton[0])
 
 sortButton.addEventListener('click', (e) => {
     if (tracker != 'sortUp') {
@@ -60,6 +61,8 @@ sortButton.addEventListener('click', (e) => {
 })
 
 function refreshTasks(tasks) {
+    itemBox.innerHTML = '';
+
     tasks.forEach((task) => {
         itemBox.append(task);
     }); 
