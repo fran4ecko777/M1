@@ -12,21 +12,26 @@ let tasks = [item];
 buttonAdd.addEventListener('click', ()=>  {
     
     let newElement = item.cloneNode(true);
-    console.dir(newElement);
     newElement.querySelector('.input-zone').value = '';
     itemBox.append( newElement );
-
     tasks.push(newElement);
 
     newElement.querySelector('.button-remove').addEventListener('click', () => {
         newElement.remove();
     })
-    
 });
+
+function removeItem (removeButton) {
+    removeButton.addEventListener('click', () => {
+        removeButton.parentElement.remove();
+    })
+}
+
+removeItem(removeButton[0])
 
 sortButton.addEventListener('click', (e) => {
     if (tracker != 'sortUp') {
-        e.target.src = './image/sortUp.svg';
+        e.target.src = './image/sortUpColored.svg';
         
         tasks.sort((a, b) => {
             if (a.querySelector('.input-zone').value > b.querySelector('.input-zone').value) {
@@ -39,7 +44,7 @@ sortButton.addEventListener('click', (e) => {
 
         tracker = 'sortUp';
     } else {
-        e.target.src = './image/sort.svg';
+        e.target.src = './image/sortColored.svg';
         
         tasks.sort((a, b) => {
             if (a.querySelector('.input-zone').value < b.querySelector('.input-zone').value) {
