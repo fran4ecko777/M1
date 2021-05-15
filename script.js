@@ -9,12 +9,7 @@ let tracker = 'sort';
 let tasks = [item];
 
 item.querySelector('.button-remove').addEventListener('click', function() {
-    tasks = tasks.filter((taskItem) => {
-        return taskItem != item;
-    });
-
-    refreshTasks(tasks);
-    // fillterTasks(tasks)
+    removeTask(item);
 });
 
 buttonAdd.addEventListener('click', ()=>  {
@@ -25,12 +20,7 @@ buttonAdd.addEventListener('click', ()=>  {
     tasks.push(newElement);
 
     newElement.querySelector('.button-remove').addEventListener('click', () => {
-        tasks = tasks.filter((item) => {       
-            return item != newElement
-        });
-       
-        refreshTasks(tasks);
-        // fillterTasks(tasks)
+        removeTask(newElement);
     })
 });
 
@@ -72,9 +62,9 @@ function refreshTasks(tasks) {
     }); 
 }
 
-function fillterTasks () {
+function removeTask(element) {
     tasks = tasks.filter((item) => {       
-        return item != newElement
+        return item != element;
     });
     refreshTasks(tasks);
 }
