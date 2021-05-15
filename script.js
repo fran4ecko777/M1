@@ -12,22 +12,25 @@ item.querySelector('.button-remove').addEventListener('click', function() {
     tasks = tasks.filter((taskItem) => {
         return taskItem != item;
     });
+
     refreshTasks(tasks);
+    // fillterTasks(tasks)
 });
 
 buttonAdd.addEventListener('click', ()=>  {
     
     let newElement = item.cloneNode(true);
     newElement.querySelector('.input-zone').value = '';
-    itemBox.append( newElement );
+    itemBox.prepend( newElement );
     tasks.push(newElement);
 
     newElement.querySelector('.button-remove').addEventListener('click', () => {
         tasks = tasks.filter((item) => {       
             return item != newElement
         });
-        
+       
         refreshTasks(tasks);
+        // fillterTasks(tasks)
     })
 });
 
@@ -65,10 +68,16 @@ function refreshTasks(tasks) {
     itemBox.innerHTML = '';
 
     tasks.forEach((task) => {
-        itemBox.append(task);
+        itemBox.prepend(task);
     }); 
 }
 
+function fillterTasks () {
+    tasks = tasks.filter((item) => {       
+        return item != newElement
+    });
+    refreshTasks(tasks);
+}
 
 sortButton.addEventListener('mouseover', (e) => {
     if (tracker == 'sort') {
