@@ -8,8 +8,11 @@ let input = document.querySelectorAll('.input-zone');
 let tracker = 'sort';
 let tasks = [item];
 
-item.addEventListener('click', function() {
-    
+item.querySelector('.button-remove').addEventListener('click', function() {
+    tasks = tasks.filter((taskItem) => {
+        return taskItem != item;
+    });
+    refreshTasks(tasks);
 });
 
 buttonAdd.addEventListener('click', ()=>  {
@@ -20,12 +23,10 @@ buttonAdd.addEventListener('click', ()=>  {
     tasks.push(newElement);
 
     newElement.querySelector('.button-remove').addEventListener('click', () => {
-        tasks = tasks.filter((item) => {
-            console.log(Number(item !== newElement));
-            
+        tasks = tasks.filter((item) => {       
             return item != newElement
         });
-        console.log(tasks);
+        
         refreshTasks(tasks);
     })
 });
@@ -35,7 +36,7 @@ sortButton.addEventListener('click', (e) => {
         e.target.src = './image/sortUpColored.svg';
         
         tasks.sort((a, b) => {
-            if (a.querySelector('.input-zone').value > b.querySelector('.input-zone').value) {
+            if (a.querySelector('.input-zone').value.toLowerCase() > b.querySelector('.input-zone').value.toLowerCase()) {
                 return 1;
             } else {
                 return -1;
@@ -48,7 +49,7 @@ sortButton.addEventListener('click', (e) => {
         e.target.src = './image/sortColored.svg';
         
         tasks.sort((a, b) => {
-            if (a.querySelector('.input-zone').value < b.querySelector('.input-zone').value) {
+            if (a.querySelector('.input-zone').value.toLowerCase() < b.querySelector('.input-zone').value.toLowerCase()) {
                 return 1;
             } else {
                 return -1;
